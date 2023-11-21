@@ -1,8 +1,17 @@
 import { Box, Button, MenuItem, TextField } from '@mui/material';
-import React, { useState } from 'react'
+import { useState } from 'react';
+import quizData from '../quizData';
 
 // Form component for Home page
 function Form() {
+
+  // function to fetch options for quiz select menu
+  const getOptions = (data) => {
+    return data.map((item) => {
+      let objectKeys = Object.keys(item)[0]; //get the first key in the object/item
+      return <MenuItem key={objectKeys} value={item[objectKeys]}>{objectKeys}</MenuItem>
+    });
+  }
 
   // custom hook to take form input
   function useFormInput(initialValue){
@@ -21,9 +30,9 @@ function Form() {
 
   // set the state
   const questions = useFormInput(''); //state to store no. of questions in input form
-  const category = useFormInput('Any'); //state to store the category of the quiz in form
-  const difficulty = useFormInput('Any'); //state to store the difficulty level of quiz
-  const quizType = useFormInput('Any'); //state to store the quiz type
+  const category = useFormInput('any'); //state to store the category of the quiz in form
+  const difficulty = useFormInput('any'); //state to store the difficulty level of quiz
+  const quizType = useFormInput('any'); //state to store the quiz type
 
   return (
     <>
@@ -47,10 +56,7 @@ function Form() {
           sx={{ mb: '30px' }}
           {...category}
         >
-          <MenuItem value='Any'>Any Category</MenuItem>
-          <MenuItem value='Anime'>Anime</MenuItem>
-          <MenuItem value='Sports'>Sports</MenuItem>
-          <MenuItem value='CA'>Current Affairs</MenuItem>
+          { getOptions(quizData.category) }
         </TextField>
 
         <TextField
@@ -62,10 +68,7 @@ function Form() {
           sx={{ mb: '30px' }}
           {...difficulty}
         >
-          <MenuItem value='Any'>Any Difficulty</MenuItem>
-          <MenuItem value='Easy'>Easy</MenuItem>
-          <MenuItem value='Medium'>Medium</MenuItem>
-          <MenuItem value='Hard'>Hard</MenuItem>
+          { getOptions(quizData.difficulty) }
         </TextField>
 
         <TextField
@@ -77,9 +80,7 @@ function Form() {
           sx={{ mb: '30px' }}
           {...quizType}
         >
-          <MenuItem value='Any'>Any Type</MenuItem>
-          <MenuItem value='MCQ'>Multiple Choice</MenuItem>
-          <MenuItem value='TF'>True/False</MenuItem>
+          { getOptions(quizData.type) }
         </TextField>
 
         <Button variant='contained' color='warning' size='large'>
