@@ -1,6 +1,7 @@
 import { Box, Button, MenuItem, TextField } from '@mui/material';
 import { useState } from 'react';
 import quizData from '../quizData';
+import { useQuiz } from '../context/hooks';
 
 // Form component for Home page
 function Form() {
@@ -16,7 +17,7 @@ function Form() {
   // custom hook to take form input
   function useFormInput(initialValue){
     const [value, setValue] = useState(initialValue);
-    console.log(value);
+    // console.log(value);
 
     const handleChange = (event) => {
       setValue(event.target.value);
@@ -33,6 +34,16 @@ function Form() {
   const category = useFormInput('any'); //state to store the category of the quiz in form
   const difficulty = useFormInput('any'); //state to store the difficulty level of quiz
   const quizType = useFormInput('any'); //state to store the quiz type
+  const quiz = useQuiz();
+  console.log(quiz);
+
+  // start the quiz
+  const handleStartQuiz = async () => {
+    const url = `https://opentdb.com/api.php?amount=${questions.value}&category=${category.value}&difficulty=${difficulty.value}&type=${quizType.value}`;
+    const response = await quiz.fetchQuestions(url);
+    // console.log(url);
+    console.log(response);
+  }
 
   return (
     <>
@@ -83,7 +94,7 @@ function Form() {
           { getOptions(quizData.type) }
         </TextField>
 
-        <Button variant='contained' color='warning' size='large'>
+        <Button variant='contained' color='warning' size='large' onClick={handleStartQuiz}>
           Start Quiz
         </Button>
       </Box>
