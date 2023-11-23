@@ -30,7 +30,7 @@ function Home() {
       {
         (questions.length === 0)
           ?
-          <Stack spacing={3} direction='column' my={3} mx={{ xs: 3, sm: 10 }}>
+          <Stack spacing={3} direction='column' my={3} mx={{ xs: 3, sm: 10 }}> 
             <Box>
               <Typography variant='h3'>Start your Quiz now</Typography>
               <Form />

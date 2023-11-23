@@ -1,6 +1,46 @@
 import { Box, Button, Card, CardActions, CardContent, Chip, Paper, Stack } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useQuiz } from '../context/hooks';
+import ClickAudio from '../assets/audios/select-sound.mp3';
 
-function QuestionBox() {
+// create audio for option selection
+const audio = new Audio(ClickAudio);
+
+function QuestionBox(props) {
+  const [selectedOption, setSelectedOption] = useState(''); // state to store selected option
+  const [timer, setTimer] = useState(30); //state to manage quiz timer
+  const { question, options, category} = props;
+  const { questions, next, setNext } = useQuiz(); 
+  const optionNo = ['A', 'B', 'C', 'D'];  // option indexes
+
+  // set the timer to answer questions
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if(timer > 0){
+        setTimer(timer - 1);
+      }else{
+        setNext(next + 1);
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    }
+  });
+
+  // handle option selection for question
+  const handleOptionClick = (_event, index) => {
+    setSelectedOption(index);
+    audio.play();
+  }
+
+  // handle switching to next question
+  const handleNextQuestion = () => {
+    if(next < questions.length){
+      setNext(next + 1);
+    }
+  }
+
   return (
     <Stack direction='column' alignItems='center'  my={3} mx={{ xs: 3, sm: 10 }}>
       <Paper>
@@ -29,7 +69,7 @@ function QuestionBox() {
                 mx: 'auto'
               }}
             >
-              Timer
+              {timer}s
             </Box>
             <Box sx={{
                 backgroundColor: 'rgb(50, 60, 74)',
@@ -39,35 +79,47 @@ function QuestionBox() {
                 borderRadius: '11px'
               }}
             >
-              Question dhsadhs sandbns hshsha dbsna sdns adnnsadb sdnsd dbs ssbasns sandbs 
+              {question}
             </Box>
           </Box>
 
           {/* Options */}
-          <CardContent sx={{ m: '15px 0px', width: '100%' }}>
-            <Box sx={{
-                backgroundColor: '#4F5684',
-                border: '1px solid #7A70ED',
-                m: '9px 0px',
-                p: '5px 10px 5px 0px',
-                borderRadius: '50px',
-                textAlign: 'start',
-                display: 'flex',
-                alignItems: 'center'
-              }}
-            >
-              <Box sx={{ 
-                  backgroundColor: '#7A70ED', 
-                  m: '0px 6px', p: '6px 11px', 
-                  fontSize: '12px', 
-                  borderRadius: '50px', 
-                  transition: 'background-color 0.3s ease-in-out' 
-                }}
-              >
-                A
-              </Box>
-              <Box>Option 1</Box>
-            </Box>
+          <CardContent className='q-box_body' sx={{ m: '15px 0px', width: '100%' }}>
+            {
+              options[0].map((option, index) => (
+                <Box 
+                  key={option}
+                  onClick={(event) => handleOptionClick(event, optionNo[index])} 
+                  sx={{
+                    backgroundColor: selectedOption === optionNo[index] ? '#3f4468b5' : '#4F5684',
+                    border: '1px solid #7A70ED',
+                    m: '9px 0px',
+                    p: '5px 10px 5px 0px',
+                    borderRadius: '50px',
+                    textAlign: 'start',
+                    display: 'flex',
+                    alignItems: 'center',
+                    '&:hover': {
+                      cursor: 'pointer',
+                      backgroundColor: '#3f4468b5',
+                      transition: 'background-color 0.3s ease-in-out'
+                    }
+                  }}
+                >
+                  <Box sx={{ 
+                      backgroundColor: '#7A70ED', 
+                      m: '0px 6px', p: '6px 11px', 
+                      fontSize: '12px', 
+                      borderRadius: '50px', 
+                      transition: 'background-color 0.3s ease-in-out' 
+                    }}
+                  >
+                    {optionNo[index]}
+                  </Box>
+                  <Box>{option}</Box>
+                </Box>
+              ))
+            }
           </CardContent>
 
           {/* Question box actions */}
@@ -80,13 +132,15 @@ function QuestionBox() {
               px: { xs: '0', sm: '20px' }
             }}
           >
-            <Chip label='Quiz Category' variant='filled' color='secondary' />
-            <Button variant='contained' >Next</Button>
+            <Chip label={category} variant='filled' color='secondary' />
+            <Button variant='contained' onClick={handleNextQuestion}>Next</Button>
           </CardActions>
         </Card>
       </Paper>
     </Stack>
   )
 }
+
+
 
 export default QuestionBox

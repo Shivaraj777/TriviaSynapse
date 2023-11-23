@@ -1,7 +1,7 @@
 import { AppBar, Avatar, Box, Button, Container, IconButton, MenuItem, Menu, Link, Toolbar } from '@mui/material';
 import React, { useState } from 'react'
 import { Link as RouterLink } from 'react-router-dom';
-import AppLogo from '../images/science.png';
+import AppLogo from '../assets/images/science.png';
 import { HomeRounded, InfoRounded } from '@mui/icons-material';
 import MenuIcon from '@mui/icons-material/Menu';
 

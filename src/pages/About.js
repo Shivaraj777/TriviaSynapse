@@ -1,5 +1,5 @@
 import { Avatar, Box, Card, CardContent, Stack, Typography } from '@mui/material';
-import ProfileAvatar from '../images/dp.jpeg';
+import ProfileAvatar from '../assets/images/dp.jpeg';
 
 // About page
 function About() {
