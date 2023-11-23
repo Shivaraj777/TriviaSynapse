@@ -35,16 +35,19 @@ function Form() {
   const difficulty = useFormInput('any'); //state to store the difficulty level of quiz
   const quizType = useFormInput('any'); //state to store the quiz type
   const quiz = useQuiz();
+  const { setQuestions, setLoading } = quiz;
   console.log(quiz);
 
   // start the quiz
   const handleStartQuiz = async () => {
+    setLoading(true);
     const url = `https://opentdb.com/api.php?amount=${questions.value}&category=${category.value}&difficulty=${difficulty.value}&type=${quizType.value}`;
     const response = await quiz.fetchQuestions(url);
     console.log(response);
 
     // update the fetched questions in context
-    quiz.setQuestions(response);
+    setQuestions(response);
+    setLoading(false);
   }
 
   return (
