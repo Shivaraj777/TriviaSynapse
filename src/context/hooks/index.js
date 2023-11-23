@@ -29,10 +29,15 @@ export const useProvideQuiz = () => {
   // return global quiz state
   return {
     questions,
+    setQuestions,
     score,
+    setScore,
     next,
+    setNext,
     loading,
+    setLoading,
     answerList,
+    setAnswerList,
     fetchQuestions
   };
 }

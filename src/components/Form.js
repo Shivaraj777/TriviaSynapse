@@ -41,8 +41,10 @@ function Form() {
   const handleStartQuiz = async () => {
     const url = `https://opentdb.com/api.php?amount=${questions.value}&category=${category.value}&difficulty=${difficulty.value}&type=${quizType.value}`;
     const response = await quiz.fetchQuestions(url);
-    // console.log(url);
     console.log(response);
+
+    // update the fetched questions in context
+    quiz.setQuestions(response);
   }
 
   return (
@@ -106,6 +108,7 @@ function Form() {
 const styles = {
   quizForm: {
     width: '100%',
+    marginX: 10,
     paddingTop: '1rem',
     borderTop: '1px solid grey'
   },

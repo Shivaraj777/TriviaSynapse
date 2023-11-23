@@ -29,7 +29,17 @@ const theme = createTheme({
           }
         }
       }
-    }
+    },
+
+    MuiStack: {
+      styleOverrides: {
+        root: {
+          '& > :not(style)': {
+            margin: '10px', // Set your custom margin value here
+          },
+        }
+      },
+    },
   }     
 });
 
