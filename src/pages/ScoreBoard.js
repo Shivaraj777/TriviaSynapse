@@ -5,15 +5,23 @@ import HouseOutlinedIcon from '@mui/icons-material/HouseOutlined';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import ReplayOutlinedIcon from '@mui/icons-material/ReplayOutlined';
+import { useQuiz } from '../context/hooks';
 
 function ScoreBoard(props) {
   const { totalQues, correctQues, wrongQues } = props;
+  const { setNext, setScore } = useQuiz();
   let percentage = (correctQues / totalQues) * 100; //quiz result percentage
   let attemptedPercentage = (correctQues + wrongQues) / totalQues * 100; //questions attempted percentage
 
   // go to home page
   const handleGoToHome = () => {
     window.location.reload();
+  }
+
+  // replay the quiz
+  const handlePlayAgain = () => {
+    setNext(0);
+    setScore({ rightAnswers: 0, wrongAnswers: 0 });
   }
 
   return (
@@ -127,7 +135,10 @@ function ScoreBoard(props) {
 
         {/* Replay quiz action */}
         <Box textAlign='center'>
-          <Box sx={{ backgroundColor: '#5492B3', color: 'white', borderRadius: '50%', p: '12px 12px 6px 12px', fontSize: '1.8rem', textDecoration: 'none', m: '0px 15px', '&:hover': { cursor: 'pointer', backgroundColor: 'rgba(236, 185, 255, 0.638) !important' } }}>
+          <Box 
+            onClick={handlePlayAgain}
+            sx={{ backgroundColor: '#5492B3', color: 'white', borderRadius: '50%', p: '12px 12px 6px 12px', fontSize: '1.8rem', textDecoration: 'none', m: '0px 15px', '&:hover': { cursor: 'pointer', backgroundColor: 'rgba(236, 185, 255, 0.638) !important' } }}
+          >
             <ReplayOutlinedIcon fontSize='large' />
           </Box>
           <Box sx={{ fontSize: '13px' }}>Play Again</Box>
