@@ -6,7 +6,11 @@ import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import ReplayOutlinedIcon from '@mui/icons-material/ReplayOutlined';
 
-function ScoreBoard() {
+function ScoreBoard(props) {
+  const { totalQues, correctQues, wrongQues } = props;
+  let percentage = (correctQues / totalQues) * 100; //quiz result percentage
+  let attemptedPercentage = (correctQues + wrongQues) / totalQues * 100; //questions attempted percentage
+
   return (
     <Box sx={{ 
         display: 'flex', 
@@ -24,7 +28,7 @@ function ScoreBoard() {
       <Box sx={{ fontSize: '1.2rem', color: '#A45EDA', backgroundColor: 'white', borderRadius: '50%', p: '3rem 1.8rem', m: '2rem', fontWeight: '600', textAlign: 'center' }}>
         Your Score <br />
         <span style={{ fontSize: '2.3rem' }}>
-          90
+          {percentage.toFixed(2)}
           <small>%</small>
         </span>
       </Box>
@@ -37,7 +41,7 @@ function ScoreBoard() {
           <Box mx={2}>
             <div style={{ fontSize: '15px', fontWeight: '400' }}>Attempted</div>
             <div style={{ fontSize: '1.2rem', fontWeight: '600', color: '/*#A45EDA*/#fff', width: '5.8rem', background: '#212832', padding: '0.5rem', borderRadius: '0.5rem' }} className="point">
-              x%
+              {attemptedPercentage.toFixed(2)}%
             </div>
           </Box>
         </Box>
@@ -48,7 +52,7 @@ function ScoreBoard() {
           <Box mx={2}>
             <div style={{ fontSize: '15px', fontWeight: '400' }}>Total Questions</div>
             <div style={{ fontSize: '1.2rem', fontWeight: '600', color: '/*#A45EDA*/#fff', width: '5.8rem', background: '#212832', padding: '0.5rem', borderRadius: '0.5rem' }} className="point">
-              x
+              {totalQues}
             </div>
           </Box>
         </Box>
@@ -59,7 +63,7 @@ function ScoreBoard() {
           <Box mx={2}>
             <div style={{ fontSize: '15px', fontWeight: '400' }}>Correct</div>
             <div style={{ fontSize: '1.2rem', fontWeight: '600', color: '/*#A45EDA*/#fff', width: '5.8rem', background: '#212832', padding: '0.5rem', borderRadius: '0.5rem' }} className="point">
-              x
+              {correctQues}
             </div>
           </Box>
         </Box>
@@ -70,7 +74,7 @@ function ScoreBoard() {
           <Box mx={2}>
             <div style={{ fontSize: '15px', fontWeight: '400' }}>Wrong</div>
             <div style={{ fontSize: '1.2rem', fontWeight: '600', color: '/*#A45EDA*/#fff', width: '5.8rem', background: '#212832', padding: '0.5rem', borderRadius: '0.5rem' }} className="point">
-              x
+              {wrongQues}
             </div>
           </Box>
         </Box>

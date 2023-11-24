@@ -8,9 +8,10 @@ const audio = new Audio(ClickAudio);
 
 function QuestionBox(props) {
   const [selectedOption, setSelectedOption] = useState(''); // state to store selected option
+  const [selectedAnswer, setSelectedAnswer] = useState(''); //state to store the selected answer
   const [timer, setTimer] = useState(30); //state to manage quiz timer
   const { question, options, category} = props;
-  const { questions, next, setNext } = useQuiz(); 
+  const { questions, next, setNext, score, setScore } = useQuiz(); 
   const optionNo = ['A', 'B', 'C', 'D'];  // option indexes
 
   // set the timer to answer questions
@@ -28,16 +29,30 @@ function QuestionBox(props) {
     }
   });
 
+  //update quiz score by checking answer
+  const checkAnswer = (selectedAns) => {
+    if (selectedAns === '') {
+        return true;
+    } else if (selectedAns === options[1]) {
+        setScore({ ...score, 'rightAnswers': score.rightAnswers + 1 });
+    } else {
+        setScore({ ...score, 'wrongAnswers': score.wrongAnswers + 1 });
+    }
+  }
+
   // handle option selection for question
-  const handleOptionClick = (_event, index) => {
+  const handleOptionClick = (event, index) => {
     setSelectedOption(index);
     audio.play();
+    setSelectedAnswer(event.target.innerText.slice(1).trim());
   }
 
   // handle switching to next question
   const handleNextQuestion = () => {
     if(next < questions.length){
+      checkAnswer(selectedAnswer);
       setNext(next + 1);
+      setSelectedAnswer('');
     }
   }
 

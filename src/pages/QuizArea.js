@@ -1,10 +1,9 @@
-import React from 'react';
 import QuestionBox from '../components/QuestionBox';
 import { useQuiz } from '../context/hooks';
 import ScoreBoard from './ScoreBoard';
 
 function QuizArea() {
-  const { questions, next } = useQuiz();
+  const { questions, next, score } = useQuiz();
 
   // generate random number from 0 to 4
   const randomNumber = () => {
@@ -36,7 +35,7 @@ function QuizArea() {
             category={questions[next].category}
           />
           :
-          <ScoreBoard />
+          <ScoreBoard totalQues={questions.length} correctQues={score.rightAnswers} wrongQues={score.wrongAnswers} />
       }
     </>
   )
