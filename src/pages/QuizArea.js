@@ -1,7 +1,7 @@
 import React from 'react';
 import QuestionBox from '../components/QuestionBox';
 import { useQuiz } from '../context/hooks';
-import { Box } from '@mui/material';
+import ScoreBoard from './ScoreBoard';
 
 function QuizArea() {
   const { questions, next } = useQuiz();
@@ -36,7 +36,7 @@ function QuizArea() {
             category={questions[next].category}
           />
           :
-          <Box></Box>
+          <ScoreBoard />
       }
     </>
   )
