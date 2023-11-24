@@ -11,6 +11,11 @@ function ScoreBoard(props) {
   let percentage = (correctQues / totalQues) * 100; //quiz result percentage
   let attemptedPercentage = (correctQues + wrongQues) / totalQues * 100; //questions attempted percentage
 
+  // go to home page
+  const handleGoToHome = () => {
+    window.location.reload();
+  }
+
   return (
     <Box sx={{ 
         display: 'flex', 
@@ -95,7 +100,10 @@ function ScoreBoard(props) {
       >
         {/* Return to home screen */}
         <Box textAlign='center'>
-          <Box sx={{ backgroundColor: '#BE709F', color: 'white', borderRadius: '50%', p: '12px 12px 6px 12px', fontSize: '1.8rem', textDecoration: 'none', m: '0px 15px', '&:hover': { cursor: 'pointer', backgroundColor: 'rgba(236, 185, 255, 0.638) !important' } }}>
+          <Box 
+            onClick={handleGoToHome}
+            sx={{ backgroundColor: '#BE709F', color: 'white', borderRadius: '50%', p: '12px 12px 6px 12px', fontSize: '1.8rem', textDecoration: 'none', m: '0px 15px', '&:hover': { cursor: 'pointer', backgroundColor: 'rgba(236, 185, 255, 0.638) !important' } }}
+          >
             <HouseOutlinedIcon fontSize='large' />
           </Box>
           <Box sx={{ fontSize: '13px' }}>Home</Box>
