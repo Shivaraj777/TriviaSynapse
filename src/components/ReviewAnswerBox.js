@@ -1,5 +1,6 @@
 import { Box, Card, CardActions, CardContent, Chip, Typography } from '@mui/material';
 import React from 'react'
+import { decodeHtmlEntities } from '../utils';
 
 function ReviewAnswerBox(props) {
   const { question, options, category, rightAnswer, index } = props;
@@ -47,13 +48,16 @@ function ReviewAnswerBox(props) {
             borderRadius: '11px',
           }}
         >
-          <Typography sx={{ 
-            fontSize: { xs: '1em', sm: '1.5em'},
-            '@media screen and (max-width: 390px)': {
-              fontSize: '10px', // Adjust font size for smaller screens
-              overflowWrap: 'break-word'
-            }
-          }}>{question}</Typography>
+          <Typography 
+            dangerouslySetInnerHTML={{ __html: question }}
+            sx={{ 
+              fontSize: { xs: '1em', sm: '1.5em'},
+              '@media screen and (max-width: 390px)': {
+                fontSize: '10px', // Adjust font size for smaller screens
+                overflowWrap: 'break-word'
+              }
+            }}
+          ></Typography>
         </Box>
       </Box>
 
@@ -84,7 +88,7 @@ function ReviewAnswerBox(props) {
               >
                 {optionNo[index]}
               </Box>
-              <Box>{option}</Box>
+              <Box dangerouslySetInnerHTML={{ __html: option }}></Box>
             </Box>
           ))
         }
@@ -100,7 +104,7 @@ function ReviewAnswerBox(props) {
           px: { xs: '0', sm: '20px' }
         }}
       >
-        <Chip label={category} variant='filled' color='secondary' />
+        <Chip label={decodeHtmlEntities(category)} variant='filled' color='secondary' />
       </CardActions>
     </Card>
   )

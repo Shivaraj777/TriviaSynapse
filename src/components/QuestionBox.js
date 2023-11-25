@@ -2,6 +2,7 @@ import { Box, Button, Card, CardActions, CardContent, Chip, Stack, Typography } 
 import { useEffect, useState } from 'react';
 import { useQuiz } from '../context/hooks';
 import ClickAudio from '../assets/audios/select-sound.mp3';
+import { decodeHtmlEntities } from '../utils';
 
 // create audio for option selection
 const audio = new Audio(ClickAudio);
@@ -95,13 +96,16 @@ function QuestionBox(props) {
               borderRadius: '11px',
             }}
           >
-            <Typography sx={{ 
-              fontSize: { xs: '1em', sm: '1.5em'},
-              '@media screen and (max-width: 390px)': {
-                fontSize: '10px', // Adjust font size for smaller screens
-                overflowWrap: 'break-word'
-              }
-            }}>{question}</Typography>
+            <Typography 
+              dangerouslySetInnerHTML={{ __html: question }} 
+              sx={{ 
+                fontSize: { xs: '1em', sm: '1.5em'},
+                '@media screen and (max-width: 390px)': {
+                  fontSize: '10px', // Adjust font size for smaller screens
+                  overflowWrap: 'break-word'
+                }
+              }}
+            ></Typography>
           </Box>
         </Box>
 
@@ -138,7 +142,7 @@ function QuestionBox(props) {
                 >
                   {optionNo[index]}
                 </Box>
-                <Box>{option}</Box>
+                <Box dangerouslySetInnerHTML={{ __html: option }}></Box>
               </Box>
             ))
           }
@@ -154,7 +158,7 @@ function QuestionBox(props) {
             px: { xs: '0', sm: '20px' }
           }}
         >
-          <Chip label={category} variant='filled' color='secondary' />
+          <Chip label={decodeHtmlEntities(category)} variant='filled' color='secondary' />
           <Button variant='contained' onClick={handleNextQuestion}>
             { (next < questions.length-1) ? 'Next' : 'Submit' }
           </Button>

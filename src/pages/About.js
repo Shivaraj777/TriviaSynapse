@@ -29,7 +29,7 @@ function About() {
           variant='body1'
           sx={{ fontFamily: 'Work Sans', color: '#718096', width: { lg: '20em' }, textAlign: 'center' }}
         >
-          Test Your Knowledge with Fun Quizzes on our Exciting Website
+          Test Your Knowledge with Fun Quizzes on my Exciting Website
         </Typography>
       </Stack>
       
@@ -63,7 +63,7 @@ function About() {
               This quiz web app is built using React JS. It can allow the user to select the criteria 
               for their quiz from a list of options. The user can then proceed to answer the questions 
               in the quiz and their performance will be tracked and shown in the scoreboard. 
-              Moreover, the app can be designed to be responsive and user-friendly.
+              Moreover, the app is be designed to be responsive and user-friendly.
             </Typography>
             <Typography variant='body1' color='#718096' fontFamily='Work Sans' mt={3}>
               <b>Shivaraj M Shetty</b> - Full Stack Developer
