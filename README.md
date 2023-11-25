@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# Trivia Synapse
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Description
 
-## Available Scripts
+Trivia Synapse is a quiz web application built using React.js and makes use of Open Trivia Database API to fetch exciting and mind jogging questions to refresh our brain.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Home page: 
+     - Form:
+         - User needs to fill the form to take the quiz.
+         - User has to enter the number of question they wish to answer.
+         - User can select the category of the quiz.
+         - User can select the Difficulty level of the quiz.
+         - User can select whether the quiz to be taken is of mutiple choice or true/false.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Quiz Area page:
+     - This page is rendered after the quiz starts.
+     - The quiz questions are displayed on the page.
+     - User can select the desired option and move to the next question.
+     - If user fails to answer the question in 30 seconds, the next question will be displayed.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Scoreboard page:
+     - This page displays the results of the quiz.
+     - It consists of action icons to move back to home page, Review Quiz Answers, Replay Quiz.
 
-### `npm test`
+- Review Answer page:
+     - User can review the quiz answers with the help of this page.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- About page:
+     - This page contains basic descriptions about the application.
 
-### `npm run build`
+## Technology used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React
+- React DOM
+- React Router DOM
+- React hooks
+- Context API
+- Material UI
+- Responsive web design
+- REST API
+- JSX
+- CSS
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Application/Project setup
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Clone the git repository in your local machine by using command,
+    - git clone https://github.com/Shivaraj777/TriviaSynapse.git
+- Open the project code in VS code.
+- Open the terminal and go to root directory of the project.
+- Use command, npm install to install all the dependencies.
+- use "npm start" command to run the application.
+- Open a new tab in any web browser and access the application using localhost:3000
 
-### `npm run eject`
+## Hosting
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Hosted on: https://trivia-synapse.web.app/
