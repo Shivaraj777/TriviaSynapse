@@ -20,7 +20,8 @@ function Form() {
     // console.log(value);
 
     const handleChange = (event) => {
-      setValue(event.target.value);
+      const targetValue = event.target.value;
+      setValue(targetValue);
     }
 
     return {
@@ -41,7 +42,10 @@ function Form() {
   // start the quiz
   const handleStartQuiz = async () => {
     setLoading(true);
-    const url = `https://opentdb.com/api.php?amount=${questions.value}&category=${category.value}&difficulty=${difficulty.value}&type=${quizType.value}`;
+    const categoryVal = (category.value === 'any') ? '' : category.value;
+    const difficultyVal = (difficulty.value === 'any') ? '' : difficulty.value;
+    const quizTypeVal = (quizType.value === 'any') ? '' : quizType.value;
+    const url = `https://opentdb.com/api.php?amount=${questions.value}&category=${categoryVal}&difficulty=${difficultyVal}&type=${quizTypeVal}`;
     const response = await quiz.fetchQuestions(url);
     console.log(response);
 
@@ -54,7 +58,7 @@ function Form() {
     <>
       <Box component='form' style={styles.quizForm}>
         <TextField 
-          type='text'
+          type='number'
           label='Enter the Number of Questions' 
           variant='outlined' 
           color='warning'
