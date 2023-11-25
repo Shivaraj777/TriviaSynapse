@@ -111,7 +111,7 @@ function Form() {
 const styles = {
   quizForm: {
     width: '100%',
-    marginX: 10,
+    marginTop: '22px',
     paddingTop: '1rem',
     borderTop: '1px solid grey'
   },
