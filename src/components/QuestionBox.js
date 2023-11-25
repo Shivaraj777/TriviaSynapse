@@ -9,7 +9,7 @@ const audio = new Audio(ClickAudio);
 function QuestionBox(props) {
   const [selectedOption, setSelectedOption] = useState(''); // state to store selected option
   const [selectedAnswer, setSelectedAnswer] = useState(''); //state to store the selected answer
-  const [timer, setTimer] = useState(300); //state to manage quiz timer
+  const [timer, setTimer] = useState(30); //state to manage quiz timer
   const { question, options, category} = props;
   const { questions, next, setNext, score, setScore, answerList, setAnswerList } = useQuiz(); 
   const optionNo = ['A', 'B', 'C', 'D'];  // option indexes
@@ -155,7 +155,9 @@ function QuestionBox(props) {
           }}
         >
           <Chip label={category} variant='filled' color='secondary' />
-          <Button variant='contained' onClick={handleNextQuestion}>Next</Button>
+          <Button variant='contained' onClick={handleNextQuestion}>
+            { (next < questions.length-1) ? 'Next' : 'Submit' }
+          </Button>
         </CardActions>
       </Card>
     </Stack>
