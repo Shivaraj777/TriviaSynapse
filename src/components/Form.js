@@ -1,5 +1,5 @@
 import { Box, Button, MenuItem, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import quizData from '../quizData';
 import { useQuiz } from '../context/hooks';
 
@@ -21,6 +21,7 @@ function Form() {
 
     const handleChange = (event) => {
       const targetValue = event.target.value;
+      // targetValue === '' ? setSubmit(false) : setSubmit(true);
       setValue(targetValue);
     }
 
@@ -35,12 +36,29 @@ function Form() {
   const category = useFormInput('any'); //state to store the category of the quiz in form
   const difficulty = useFormInput('any'); //state to store the difficulty level of quiz
   const quizType = useFormInput('any'); //state to store the quiz type
+  const [submit, setSubmit] = useState(true);
   const quiz = useQuiz();
   const { setQuestions, setLoading } = quiz;
   console.log(quiz);
 
+  // reset submit state
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setSubmit(true);
+    }, 5000);
+
+    // cleanup function to clear the interval
+    return () => clearInterval(intervalId);
+  }, [submit]);
+
   // start the quiz
   const handleStartQuiz = async () => {
+    // if questions input field is blank, throw error
+    if(questions.value === ''){
+      setSubmit(false);
+      return;
+    }
+
     setLoading(true);
     const categoryVal = (category.value === 'any') ? '' : category.value;
     const difficultyVal = (difficulty.value === 'any') ? '' : difficulty.value;
@@ -63,8 +81,11 @@ function Form() {
           variant='outlined' 
           color='warning'
           fullWidth
+          required={true}
           sx={{ mb: '30px' }}
           {...questions}
+          error={!submit}
+          helperText={!submit ? 'Please enter the no. of questions to take quiz' : ''}
         />
 
         <TextField
