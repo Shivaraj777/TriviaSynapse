@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, Chip, Paper, Stack, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, Chip, Stack, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useQuiz } from '../context/hooks';
 import ClickAudio from '../assets/audios/select-sound.mp3';
