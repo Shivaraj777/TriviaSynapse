@@ -1,6 +1,6 @@
 import QuestionBox from '../components/QuestionBox';
 import { useQuiz } from '../context/hooks';
-import ScoreBoard from './ScoreBoard';
+import { ScoreBoard } from './';
 
 function QuizArea() {
   const { questions, next, score } = useQuiz();

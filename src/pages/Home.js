@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material';
 import React from 'react'
 import Form from '../components/Form';
-import QuizArea from './QuizArea';
+import { QuizArea } from './';
 import { useQuiz } from '../context/hooks';
 import { HashLoader } from 'react-spinners';
 

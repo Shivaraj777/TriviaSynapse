@@ -1,5 +1,6 @@
-import { Box } from '@mui/material';
+import { Box, Link } from '@mui/material';
 import React from 'react'
+import { Link as RouterLink } from 'react-router-dom';
 import ScoreBoardBackground from '../assets/images/scoreboard-bg.jpg';
 import HouseOutlinedIcon from '@mui/icons-material/HouseOutlined';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
@@ -9,7 +10,7 @@ import { useQuiz } from '../context/hooks';
 
 function ScoreBoard(props) {
   const { totalQues, correctQues, wrongQues } = props;
-  const { setNext, setScore } = useQuiz();
+  const { setNext, setScore, setAnswerList } = useQuiz();
   let percentage = (correctQues / totalQues) * 100; //quiz result percentage
   let attemptedPercentage = (correctQues + wrongQues) / totalQues * 100; //questions attempted percentage
 
@@ -22,6 +23,7 @@ function ScoreBoard(props) {
   const handlePlayAgain = () => {
     setNext(0);
     setScore({ rightAnswers: 0, wrongAnswers: 0 });
+    setAnswerList([]);
   }
 
   return (
@@ -127,9 +129,11 @@ function ScoreBoard(props) {
 
         {/* Review Answer action */}
         <Box textAlign='center'>
-          <Box sx={{ backgroundColor: '#BF8D6F', color: 'white', borderRadius: '50%', p: '12px 12px 6px 12px', fontSize: '1.8rem', textDecoration: 'none', m: '0px 15px', '&:hover': { cursor: 'pointer', backgroundColor: 'rgba(236, 185, 255, 0.638) !important' } }}>
-            <VisibilityOutlinedIcon fontSize='large' />
-          </Box>
+          <Link component={RouterLink} to='/review-answer'>
+            <Box sx={{ backgroundColor: '#BF8D6F', color: 'white', borderRadius: '50%', p: '12px 12px 6px 12px', fontSize: '1.8rem', textDecoration: 'none', m: '0px 15px', '&:hover': { cursor: 'pointer', backgroundColor: 'rgba(236, 185, 255, 0.638) !important' } }}>
+              <VisibilityOutlinedIcon fontSize='large' />
+            </Box>
+          </Link>
           <Box sx={{ fontSize: '13px' }}>Review Answer</Box>
         </Box>
 

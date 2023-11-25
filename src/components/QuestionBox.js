@@ -11,7 +11,7 @@ function QuestionBox(props) {
   const [selectedAnswer, setSelectedAnswer] = useState(''); //state to store the selected answer
   const [timer, setTimer] = useState(300); //state to manage quiz timer
   const { question, options, category} = props;
-  const { questions, next, setNext, score, setScore } = useQuiz(); 
+  const { questions, next, setNext, score, setScore, answerList, setAnswerList } = useQuiz(); 
   const optionNo = ['A', 'B', 'C', 'D'];  // option indexes
 
   // set the timer to answer questions
@@ -54,6 +54,9 @@ function QuestionBox(props) {
       setNext(next + 1);
       setSelectedAnswer('');
     }
+
+    // update the answered questions
+    setAnswerList([...answerList, { 'id': `id-${next}`, 'question': question, 'options': options[0], 'category': category, 'myAnswer': selectedAnswer, 'rightAnswer': options[1] }]);
   }
 
   return (

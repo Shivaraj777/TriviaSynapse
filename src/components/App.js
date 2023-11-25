@@ -1,5 +1,5 @@
 import { ThemeProvider, createTheme } from '@mui/material';
-import { About, Home } from '../pages';
+import { About, Home, ReviewAnswer } from '../pages';
 import Navbar from './Navbar';
 import { Routes, Route } from 'react-router-dom';
 
@@ -51,6 +51,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route exact path='/about' element={<About />} />
+          <Route exact path='/review-answer' element={<ReviewAnswer />} />
         </Routes>
       </ThemeProvider>
     </div>
