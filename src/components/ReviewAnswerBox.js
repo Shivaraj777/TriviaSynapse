@@ -15,12 +15,12 @@ function ReviewAnswerBox(props) {
         textAlign: 'center', 
         backgroundColor: '#212832', 
         color: 'white', 
-        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.3)'
+        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.3)',
       }}
     >
       {/* Question */}
       <Box sx={{ 
-          minWidth: { lg: '660px' }, 
+          minWidth: { sm: '445px', lg: '660px' }, 
           maxWidth: { xs: '445px', lg: '660px'},
           '@media screen and (max-width: 390px)': {
             maxWidth: '286px'
@@ -101,10 +101,10 @@ function ReviewAnswerBox(props) {
           flexDirection: 'row', 
           justifyContent: 'center', 
           boxSizing: 'border-box', 
-          px: { xs: '0', sm: '20px' }
+          px: { xs: '0', sm: '20px' },
         }}
       >
-        <Chip label={decodeHtmlEntities(category)} variant='filled' color='secondary' />
+        <Chip label={decodeHtmlEntities(category)} variant='filled' color='secondary' sx={{ maxWidth: '200px'}} />
       </CardActions>
     </Card>
   )
