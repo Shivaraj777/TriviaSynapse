@@ -1,13 +1,18 @@
 import { Box, Stack, Typography } from '@mui/material';
 import React from 'react'
 import Form from '../components/Form';
-import { QuizArea } from './';
+import { Error, QuizArea } from './';
 import { useQuiz } from '../context/hooks';
 import { HashLoader } from 'react-spinners';
 
 function Home() {
   const quiz = useQuiz(); //get the quiz state
-  const { questions, loading} = quiz;
+  const { questions, loading, error} = quiz;
+
+  // if error in fetching questions
+  if(error.state){
+    return <Error />
+  }
 
   return (
     <>

@@ -14,6 +14,7 @@ export const useProvideQuiz = () => {
   const [next, setNext] = useState(0);  //state used to switch to next question while taking quiz
   const [loading, setLoading] = useState(false);  //loader state
   const [answerList, setAnswerList] = useState([]);  //state to store the answered questions
+  const [error, setError] = useState({state: false, message: ''}); //state to store error status
 
   // fetch trivia question
   const fetchQuestions = async (url) => {
@@ -21,7 +22,26 @@ export const useProvideQuiz = () => {
 
     if(response.response_code === 0){
       return response.results;
+      
+    }else if(response.response_code === 1){
+      setError({
+        state: true,
+        message: 'No Results Could not return results. The API does not have enough questions for your query.'
+      });
+      console.log(`Error in fetching quiz questions: ${response.response_code}`);
+
+    }else if(response.response_code === 2){
+      setError({
+        state: true,
+        message: 'Invalid Parameter Contains an invalid parameter. Arguements passed in are not valid.'
+      });
+      console.log(`Error in fetching quiz questions: ${response.response_code}`);
+
     }else{
+      setError({
+        state: true,
+        message: 'Internal Server Error'
+      });
       console.log(`Error in fetching quiz questions: ${response.response_code}`);
     }
   }
@@ -38,6 +58,7 @@ export const useProvideQuiz = () => {
     setLoading,
     answerList,
     setAnswerList,
-    fetchQuestions
+    fetchQuestions,
+    error
   };
 }
