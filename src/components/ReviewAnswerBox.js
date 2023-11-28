@@ -20,10 +20,11 @@ function ReviewAnswerBox(props) {
     >
       {/* Question */}
       <Box sx={{ 
-          minWidth: { sm: '445px', lg: '660px' }, 
-          maxWidth: { xs: '445px', lg: '660px'},
+          minWidth: { xs: '372px', sm: '445px', lg: '660px' }, 
+          maxWidth: { xs: '372px', sm: '445px', lg: '660px'},
           '@media screen and (max-width: 390px)': {
-            maxWidth: '286px'
+            minWidth: '250px',
+            maxWidth: '250px',
           }
         }}
       >
