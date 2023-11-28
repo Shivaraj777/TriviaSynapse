@@ -39,7 +39,7 @@ function Form() {
   const [submit, setSubmit] = useState(true);
   const quiz = useQuiz();
   const { setQuestions, setLoading } = quiz;
-  console.log(quiz);
+  // console.log(quiz);
 
   // reset submit state
   useEffect(() => {
@@ -65,7 +65,7 @@ function Form() {
     const quizTypeVal = (quizType.value === 'any') ? '' : quizType.value;
     const url = `https://opentdb.com/api.php?amount=${questions.value}&category=${categoryVal}&difficulty=${difficultyVal}&type=${quizTypeVal}`;
     const response = await quiz.fetchQuestions(url);
-    console.log(response);
+    // console.log(response);
 
     // update the fetched questions in context
     setQuestions(response);
